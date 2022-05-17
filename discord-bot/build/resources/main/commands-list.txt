@@ -1,0 +1,2 @@
+!commands : Lists all commands you can yelll at the bot.
+!joke : The bot tries his best to make you laugh.
