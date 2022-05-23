@@ -20,9 +20,19 @@ test {
     useJUnitPlatform()
 }
 
-jar {
+jar{
     manifest{
-        attributes "Main-Class":"Main" 
+        attributes 'Main-Class' : 'com.princecharming.Main'
     }
-    
+}
+
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+	manifest {
+         attributes 'Main-Class' : 'com.princecharming.Main'
+    }
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+    baseName = "fatJar :" + project.name
+    from { configurations.implementation.collect { it.isDirectory() ? it : zipTree(it) } }
+
 }
