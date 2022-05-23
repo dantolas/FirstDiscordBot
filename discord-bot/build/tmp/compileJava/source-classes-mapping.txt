@@ -1,3 +1,5 @@
+com/princecharming/Commands.java
+ com.princecharming.Commands
 com/princecharming/EventListeners.java
  com.princecharming.EventListeners
 com/princecharming/Main.java
