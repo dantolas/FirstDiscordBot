@@ -40,7 +40,8 @@ public class Help implements Command {
     @Override
     public String getHelp() {
         return "Gives you the description of one or multiple commands\n" +
-                "->do "+ Constants.BOT_COMMAND_PREFIX+getCommandName()+" <command> for one command, or <command command command...> for multiple commands.";
+                "->do "+ Constants.BOT_COMMAND_PREFIX+getCommandName()+" <command> for one command, or <command command command...> for multiple commands.\n"+
+                "->do "+Constants.BOT_COMMAND_PREFIX+"commands for lit of all commands.";
     }
 
     @Override

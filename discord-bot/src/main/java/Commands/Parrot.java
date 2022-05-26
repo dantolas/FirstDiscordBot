@@ -18,13 +18,19 @@ public class Parrot implements Command {
 
     @Override
     public void run(List<String> args, MessageReceivedEvent event) {
+        if(args.isEmpty()){
+            event.getTextChannel().sendMessage(getHelp()).queue();
+            return;
+        }
         args.forEach(argument ->{
-            String username = argument.replaceFirst("#","");
-            if(!cm.parrotList.contains(username)){
-                cm.parrotList.add(username);
+            String userTag = argument.replaceFirst("#","");
+            if(!cm.tm.getParrotList().contains(userTag)){
+                cm.tm.getParrotList().add(userTag);
+                event.getTextChannel().sendMessage("*"+userTag+"* is being parroted.").queue();
 
             }else {
-                cm.parrotList.remove(username);
+                cm.tm.getParrotList().remove(userTag);
+                event.getTextChannel().sendMessage("*"+userTag+"* is being parroted no longer.").queue();
             }
         });
     }

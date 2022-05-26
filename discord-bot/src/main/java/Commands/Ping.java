@@ -7,6 +7,9 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import java.util.List;
 
 public class Ping implements Command {
+
+
+
     @Override
     public void run(List<String> args, MessageReceivedEvent event) {
         event.getTextChannel().sendMessage(event.getJDA().getGatewayPing()+ "ms").queue();
