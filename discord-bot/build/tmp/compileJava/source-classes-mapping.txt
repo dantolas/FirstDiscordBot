@@ -6,38 +6,44 @@ Commands/Joke.java
  Commands.Joke
 com/princecharming/Main.java
  com.princecharming.Main
+LavaPlayer/PlayerManager.java
+ LavaPlayer.PlayerManager
+ LavaPlayer.PlayerManager$1
 com/princecharming/Constants.java
  com.princecharming.Constants
-Commands/PausePlay.java
- Commands.PausePlay
-Commands/RickRoll.java
- Commands.RickRoll
+Commands/HangmanPlayer.java
+ Commands.HangmanPlayer
+Commands/VoiceDisconnect.java
+ Commands.VoiceDisconnect
+Commands/PlayNext.java
+ Commands.PlayNext
 Commands/SniperPiss.java
  Commands.SniperPiss
+Commands/Ping.java
+ Commands.Ping
 LavaPlayer/TrackScheduler.java
  LavaPlayer.TrackScheduler
 com/princecharming/Command.java
  com.princecharming.Command
 LavaPlayer/GuildMusicManager.java
  LavaPlayer.GuildMusicManager
+Commands/RickRoll.java
+ Commands.RickRoll
 Commands/Play.java
  Commands.Play
-Commands/PlayNext.java
- Commands.PlayNext
-LavaPlayer/PlayerManager.java
- LavaPlayer.PlayerManager
- LavaPlayer.PlayerManager$1
-Commands/Commands.java
- Commands.Commands
-Commands/VoiceDisconnect.java
- Commands.VoiceDisconnect
-Commands/Parrot.java
- Commands.Parrot
+Commands/PausePlay.java
+ Commands.PausePlay
+Commands/Hangman.java
+ Commands.Hangman
+com/princecharming/TextManager.java
+ com.princecharming.TextManager
 Commands/Help.java
  Commands.Help
 com/princecharming/Listener.java
  com.princecharming.Listener
+Commands/Commands.java
+ Commands.Commands
 com/princecharming/CommandManager.java
  com.princecharming.CommandManager
-Commands/Ping.java
- Commands.Ping
+Commands/Parrot.java
+ Commands.Parrot

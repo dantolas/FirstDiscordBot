@@ -25,7 +25,7 @@ public class VoiceDisconnect implements Command {
 
             GuildMusicManager musicManager = playerManager.getMusicManager(event.getGuild());
             //Checks if the bot is currently playing a song, if it is, it pauses the song
-            if(musicManager != null || musicManager.audioPlayer.getPlayingTrack() != null){
+            if(musicManager != null && musicManager.audioPlayer.getPlayingTrack() != null){
                 if(!musicManager.audioPlayer.isPaused()){
                     musicManager.audioPlayer.setPaused(true);
                     event.getTextChannel().sendMessage("Track :"+musicManager.audioPlayer.getPlayingTrack().getInfo().title+" has been paused").queue();

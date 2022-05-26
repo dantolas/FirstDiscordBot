@@ -15,6 +15,9 @@ import Commands.RickRoll;
 import Commands.PausePlay;
 import Commands.VoiceDisconnect;
 import Commands.Ping;
+import Commands.Hangman;
+
+
 //endregion
 
 
@@ -24,12 +27,13 @@ import java.util.regex.Pattern;
 public class CommandManager {
 
 
-    public List<String> parrotList = new ArrayList<>();
     private final Map<String,Command> commands = new HashMap<>();
     private final Map<String,Command> secretCommands = new HashMap<>();
+    public final TextManager tm;
 
 
     public CommandManager() {
+        tm = new TextManager();
         addCommand(new Commands(this));
         addCommand(new Help(this));
         addCommand(new Joke());
@@ -40,6 +44,7 @@ public class CommandManager {
         addCommand(new Shutdown());
         addCommand(new VoiceDisconnect());
         addCommand(new Ping());
+        addCommand(new Hangman(this));
 
         addSecretCommand(new SniperPiss());
         addSecretCommand(new RickRoll());
@@ -75,11 +80,19 @@ public class CommandManager {
     void handle(MessageReceivedEvent event){
 
         final String message = event.getMessage().getContentRaw();
+        System.out.println("Command manager has recieved a message");
 
-        //Checks if the message starts with the secret command prefix
-        if(message.startsWith(Constants.BOT_SECRET_COMMAND_PREFIX)){
+        if(!message.startsWith(Constants.BOT_COMMAND_PREFIX) && !message.endsWith(Constants.BOT_SECRET_COMMAND_AFTERFIX)){
+            tm.handle(event);
+            System.out.println("Command manager has passed it on to tm to handle");
+            return;
+        }
+
+        //region<isSecretCommand check>
+        //Checks if the message starts with the secret command prefix, executes if true
+        if(message.endsWith(Constants.BOT_SECRET_COMMAND_AFTERFIX)){
             final String[] msgSplit = message
-                    .replaceFirst(Pattern.quote(Constants.BOT_SECRET_COMMAND_PREFIX),"")
+                    .replaceAll(Pattern.quote(Constants.BOT_SECRET_COMMAND_AFTERFIX),"")
                     .split("\\s+");
             final String commandName = msgSplit[0].toLowerCase();
 
@@ -87,24 +100,23 @@ public class CommandManager {
                 final List<String> args = Arrays.asList(msgSplit).subList(1, msgSplit.length);
                 secretCommands.get(commandName).run(args,event);
             }
-        }
-
-        //Checks if the message starts with a command prefix, if false executes the if statement
-        if(!message.startsWith(Constants.BOT_COMMAND_PREFIX)){
-            String[] tagSplit = event.getAuthor().getAsTag().split("#");
-            String authorTag = tagSplit[1];
-            if(parrotList.contains(authorTag)){
-                event.getTextChannel().sendMessage(event.getMessage().getContentRaw()).queue();
-            }
             return;
         }
+        //endregion
+
+        //region<IsCommand check>
+        //Checks if the message starts with a command prefix
+        if(!message.startsWith(Constants.BOT_COMMAND_PREFIX)){
+            return;
+        }
+        //endregion
 
         final String[] msgSplit = message
                                     .replaceFirst(Pattern.quote(Constants.BOT_COMMAND_PREFIX),"")
                                     .split("\\s+");
         final String commandName = msgSplit[0].toLowerCase();
 
-
+        //region<needOwnerPermission check & respond if the command is unknow>
         //Lot of nested ifs, let's describe them
         //Checks if the command that came in is on the commands list, continues if true
         if(commands.containsKey(commandName)){
@@ -124,6 +136,7 @@ public class CommandManager {
         }else {
             event.getTextChannel().sendMessage("I don't know that command :skull:").queue();
         }
+        //endregion
     }
 
 }
