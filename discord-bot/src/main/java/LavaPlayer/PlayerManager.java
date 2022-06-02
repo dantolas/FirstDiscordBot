@@ -55,12 +55,12 @@ public class PlayerManager {
             public void playlistLoaded(AudioPlaylist playlist) {
                 final List<AudioTrack> tracks = playlist.getTracks();
                 if(!tracks.isEmpty()){
-                    musicManager.scheduler.queue(tracks.get(0));
+                    tracks.forEach(musicManager.scheduler::queue);
 
                     textChannel.sendMessage("Adding to queue :")
-                            .append(tracks.get(0).getInfo().title)
+                            .append(String.valueOf(tracks.size())+" tracks")
                             .append(" by ")
-                            .append(tracks.get(0).getInfo().author)
+                            .append(" ")
                             .queue();
 
                 }

@@ -1,6 +1,7 @@
 package com.princecharming;
 
 import net.dv8tion.jda.api.events.ReadyEvent;
+import net.dv8tion.jda.api.events.message.MessageEmbedEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
@@ -18,7 +19,11 @@ public class Listener extends ListenerAdapter {
         System.out.println("Available on `"+event.getGuildAvailableCount()+"` guilds out of `"+event.getGuildTotalCount()+"`");
     }
 
-
+    @Override
+    public void onMessageEmbed(@NotNull MessageEmbedEvent event) {
+       cm.tm.handle(event);
+        System.out.println("Listener received embed message");
+    }
 
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {

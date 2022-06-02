@@ -1,13 +1,13 @@
 package com.princecharming;
 
 import Commands.HangmanPlayer;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.MessageEmbed;
+import net.dv8tion.jda.api.events.message.MessageEmbedEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class TextManager {
 
@@ -31,11 +31,22 @@ public class TextManager {
         return null;
     }
 
+
+
+    void handle(MessageEmbedEvent event){
+        MessageEmbed embed = event.getMessageEmbeds().get(0);
+
+        if (embed.getFooter().getText().equalsIgnoreCase("color")){
+            event.getTextChannel().sendMessage("ColorEmbedRecieved").queue();
+        }
+
+    }
+
     public void handle(MessageReceivedEvent event){
         String username = event.getAuthor().getName();
         String message = event.getMessage().getContentRaw();
 
-        System.out.println("Text manager has recieved a message");
+        System.out.println("Text manager has received a message");
 
         String[] tagSplit = event.getAuthor().getAsTag().split("#");
         String authorTag = tagSplit[1];
@@ -69,8 +80,10 @@ public class TextManager {
                     event.getTextChannel().sendMessage(player.hangmanStates[player.getMistakes()]+"\n"+player.getLastGuess()).queue();
                 }
             }
-
         }
+
+
+
     }
 
 

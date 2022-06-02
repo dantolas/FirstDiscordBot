@@ -1,5 +1,6 @@
 package com.princecharming;
 
+import net.dv8tion.jda.api.events.message.MessageEmbedEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 //region<Imported Commands>
@@ -16,6 +17,8 @@ import Commands.PausePlay;
 import Commands.VoiceDisconnect;
 import Commands.Ping;
 import Commands.Hangman;
+import Commands.Meme;
+import Commands.Colors;
 
 
 //endregion
@@ -45,6 +48,8 @@ public class CommandManager {
         addCommand(new VoiceDisconnect());
         addCommand(new Ping());
         addCommand(new Hangman(this));
+        addCommand(new Meme());
+        addCommand(new Colors());
 
         addSecretCommand(new SniperPiss());
         addSecretCommand(new RickRoll());
@@ -77,10 +82,11 @@ public class CommandManager {
         return commands.get(cName);
     }
 
+
     void handle(MessageReceivedEvent event){
 
         final String message = event.getMessage().getContentRaw();
-        System.out.println("Command manager has recieved a message");
+        System.out.println("Command manager has received a message");
 
         if(!message.startsWith(Constants.BOT_COMMAND_PREFIX) && !message.endsWith(Constants.BOT_SECRET_COMMAND_AFTERFIX)){
             tm.handle(event);
@@ -116,7 +122,7 @@ public class CommandManager {
                                     .split("\\s+");
         final String commandName = msgSplit[0].toLowerCase();
 
-        //region<needOwnerPermission check & respond if the command is unknow>
+        //region<needOwnerPermission check & respond if the command is unknown>
         //Lot of nested ifs, let's describe them
         //Checks if the command that came in is on the commands list, continues if true
         if(commands.containsKey(commandName)){
@@ -126,7 +132,7 @@ public class CommandManager {
                 commands.get(commandName).run(args,event);
             }else { //This happens if the command does need an owner permission
                 //If the author of the command is the bot owner, continue
-                if(event.getAuthor().getIdLong() == Constants.OWNDER_ID) {
+                if(event.getAuthor().getIdLong() == Constants.OWNER_ID) {
                     final List<String> args = Arrays.asList(msgSplit).subList(1, msgSplit.length);
                     commands.get(commandName).run(args, event);
                 }else { //If the author is not the bot owner, do this

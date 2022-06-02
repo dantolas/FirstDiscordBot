@@ -9,6 +9,7 @@ import java.util.List;
 public class Shutdown implements Command {
     @Override
     public void run(List<String> args, MessageReceivedEvent event) {
+        event.getTextChannel().sendMessage("Peace :v: ").queue();
         event.getJDA().shutdown();
         System.exit(0);
     }
