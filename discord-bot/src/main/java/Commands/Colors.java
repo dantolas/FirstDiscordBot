@@ -6,8 +6,10 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.MessageEmbedEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Colors implements Command {
 
@@ -25,13 +27,27 @@ public class Colors implements Command {
             Constants.colorEmojis.put(args.get(0),args.get(1));
             return;
         }
-        EmbedBuilder builder = new EmbedBuilder()
-                .setTitle("Color Picker 9000")
-                //.setImage("main/resources/colorWheel.png")
-                .setDescription("Pick a color! Any color...")
-                .setFooter("color");
 
-        event.getTextChannel().sendMessageEmbeds(builder.build()).queue();
+        StringBuilder sBuilder = new StringBuilder();
+
+        Map<String,String> map = Constants.colorEmojis;
+        for(Map.Entry<String,String> entry : Constants.colorEmojis.entrySet()){
+            sBuilder.append(entry.getKey()).append(" ").append(entry.getValue()).append(" ");
+        }
+
+        EmbedBuilder builder = new EmbedBuilder()
+                .setTitle("Color Picker 9000 "+"\uD83C\uDF08")
+                .setDescription(sBuilder)
+                .setFooter("Pick a card! Any card....");
+
+        event.getTextChannel().sendMessageEmbeds(builder.build()).queue(message -> {
+            Constants.colorEmojis.values().forEach(emoji ->{
+                message.addReaction(emoji).queue();
+            });
+
+
+            Constants.colorEmbedIds.add(message.getIdLong());
+        });
 
     }
 

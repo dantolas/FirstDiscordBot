@@ -17,16 +17,17 @@ public class Play implements com.princecharming.Command {
     @Override
     public void run(List<String> args, MessageReceivedEvent event) {
 
+        //Returns if no arguments were passed in
         if(args.isEmpty()){
             event.getTextChannel().sendMessage(getHelp()).queue();
             return;
         }
-
+        //Returns if the person executing the command is not in a voice channel
         if(!event.getMember().getVoiceState().inAudioChannel()){
             event.getTextChannel().sendMessage("You need to be in a voice channel to use this command.").queue();
             return;
         }
-
+        //if the member isn't in a voice channel, he joins one
         if(!event.getGuild().getSelfMember().getVoiceState().inAudioChannel()){
             final AudioManager audioManager = event.getGuild().getAudioManager();
             final VoiceChannel memberChannel = (VoiceChannel) event.getMember().getVoiceState().getChannel();
@@ -34,11 +35,16 @@ public class Play implements com.princecharming.Command {
             audioManager.openAudioConnection(memberChannel);
         }
 
-        String link = args.get(0);
-        if(!isURL(link)){
-            link = "ytsearch:" + link + "audio";
-        }
+        StringBuilder builder = new StringBuilder();
+        args.forEach(word ->{
+            builder.append(word).append(" ");
+        });
 
+        String link = builder.toString();
+        if(!isURL(link)){
+            link = "ytsearch:" + link;
+        }
+        event.getTextChannel().sendMessage(link).queue();
         PlayerManager.getINSTANCE().loadAndPlay(event.getTextChannel(), link);
     }
 

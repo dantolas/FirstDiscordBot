@@ -55,12 +55,12 @@ public class PlayerManager {
             public void playlistLoaded(AudioPlaylist playlist) {
                 final List<AudioTrack> tracks = playlist.getTracks();
                 if(!tracks.isEmpty()){
-                    tracks.forEach(musicManager.scheduler::queue);
+                    musicManager.scheduler.queue(tracks.get(0));
 
                     textChannel.sendMessage("Adding to queue :")
-                            .append(String.valueOf(tracks.size())+" tracks")
+                            .append(tracks.get(0).getInfo().title)
                             .append(" by ")
-                            .append(" ")
+                            .append(tracks.get(0).getInfo().author)
                             .queue();
 
                 }
@@ -69,7 +69,7 @@ public class PlayerManager {
 
             @Override
             public void noMatches() {
-
+                textChannel.sendMessage("No matches found").queue();
             }
 
             @Override
