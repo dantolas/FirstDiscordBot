@@ -4,7 +4,6 @@ import com.princecharming.Command;
 import com.princecharming.CommandManager;
 import com.princecharming.Constants;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.List;
@@ -22,7 +21,10 @@ public class Commands implements Command {
     public void run(List<String> args, MessageReceivedEvent event) {
         if(args.isEmpty()){
             EmbedBuilder e = new EmbedBuilder()
-                    .setTitle("List of all commands");
+                    .setTitle(":robot:  List of all commands :robot: ")
+                    .setThumbnail(event.getGuild().getIconUrl())
+                    .setFooter("Bot owner ~"+Constants.OWNER_NAME);
+
             StringBuilder desc = e.getDescriptionBuilder();
             cm.getCommands().forEach(command -> {
                 desc.append(" **").append(command.getCommandName()+"** -"+command.getHelp()+"\n");

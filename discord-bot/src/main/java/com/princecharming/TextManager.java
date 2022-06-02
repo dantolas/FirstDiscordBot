@@ -1,13 +1,16 @@
 package com.princecharming;
 
 import Commands.HangmanPlayer;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.MessageEmbed;
+import net.dv8tion.jda.api.entities.Role;
+import net.dv8tion.jda.api.events.message.MessageEmbedEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class TextManager {
 
@@ -31,16 +34,46 @@ public class TextManager {
         return null;
     }
 
+    //Handles all Message Reactions fired
+    void handle(MessageReactionAddEvent event){
+
+        if(event.getUser().isBot()){
+            return;
+        }
+        System.out.println("Text Manager received a reaction event");
+
+        if(!Constants.colorEmbedIds.contains(event.getMessageIdLong())){
+            return;
+        }
+        colorEmbedReaction(event);
+    }
+
+    private void colorEmbedReaction(MessageReactionAddEvent event){
+        Guild guild = event.getGuild();
+        String emojiName = event.getReactionEmote().getName();
+
+        event.getTextChannel().sendMessage("Reaction to color picker spotted"+event.getReactionEmote().getName()).queue();
+        List<Role> roles = guild.getRolesByName(emojiName,true);
+        if(roles == null || roles.size() == 0){
+            event.getTextChannel().sendMessage("No role found").queue();
+            return;
+        }
+    }
+
+    //Handles all messages fired
     public void handle(MessageReceivedEvent event){
         String username = event.getAuthor().getName();
         String message = event.getMessage().getContentRaw();
 
-        System.out.println("Text manager has recieved a message");
+        System.out.println("Text manager has received a message");
 
         String[] tagSplit = event.getAuthor().getAsTag().split("#");
         String authorTag = tagSplit[1];
         String userTag = event.getAuthor().getName();
-        //Checks for parroting users, and hangman players
+
+
+
+        //Checks for parroting users
         if(parrotList.contains(authorTag)){
             if(message.equalsIgnoreCase("i'm dumb") || message.equalsIgnoreCase("i'm stupid")|| message.equalsIgnoreCase("im dumb") ||message.equalsIgnoreCase("im stupid")){
                 event.getTextChannel().sendMessage("We know you are.").queue();
@@ -49,7 +82,7 @@ public class TextManager {
             }
         }
 
-
+        //Checks for hangman players
         if(hangmanPlayers.contains(HangmanPlayer.getByName(this.hangmanPlayers,username))){
             char letter =  message.charAt(0);
             HangmanPlayer player = getHangmanPlayer(username);
@@ -69,13 +102,16 @@ public class TextManager {
                     event.getTextChannel().sendMessage(player.hangmanStates[player.getMistakes()]+"\n"+player.getLastGuess()).queue();
                 }
             }
-
         }
+
+
+
     }
 
 
-
+    //Hangman related function
     //Checks if the player got at least one character right, if yes then return true
+    //Also takes care of changing the last guess and incrementing player mistakes
     private boolean hangmanContainsLetter(HangmanPlayer player, char playerInput){
 
         StringBuilder builder = new StringBuilder(player.getLastGuess());

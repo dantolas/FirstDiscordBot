@@ -69,7 +69,7 @@ public class PlayerManager {
 
             @Override
             public void noMatches() {
-
+                textChannel.sendMessage("No matches found").queue();
             }
 
             @Override

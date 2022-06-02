@@ -10,13 +10,24 @@ repositories {
     maven {
         url 'https://m2.dv8tion.net/releases'
     }
+    maven {
+        url 'https://mvnrepository.com/artifact/org.json/json'
+    }
+
+    maven {
+        url 'https://jitpack.io'
+    }
+
 }
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     implementation("net.dv8tion:JDA:5.0.0-alpha.11")
-    implementation 'com.sedmelluq:lavaplayer:1.3.77'
+    implementation 'com.github.walkyst:lavaplayer-fork:1.3.97.1'
+    implementation 'org.json:json:20220320'
+
+
 }
 
 test {
@@ -29,13 +40,3 @@ jar{
     }
 }
 
-//create a single Jar with all dependencies
-task fatJar(type: Jar) {
-	manifest {
-         attributes 'Main-Class' : 'com.princecharming.Main'
-    }
-    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
-    baseName = "fatJar :" + project.name
-    from { configurations.implementation.collect { it.isDirectory() ? it : zipTree(it) } }
-
-}
