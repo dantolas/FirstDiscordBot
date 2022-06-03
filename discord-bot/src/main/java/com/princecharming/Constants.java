@@ -73,6 +73,29 @@ public abstract class Constants {
            Map.entry("navy","\uD83E\uDED0")
    );
 
+   public static Map<String,String> emojiUniToColors = Map.ofEntries(
+           Map.entry("\uD83E\uDD75","red"),
+           Map.entry("\uD83D\uDC21","salmon"),
+           Map.entry("\uD83E\uDDE2","blue"),
+           Map.entry("\uD83D\uDDA4","black"),
+           Map.entry("\uD83C\uDF47","purple"),
+           Map.entry("\uD83E\uDD91","magenta"),
+           Map.entry("\uD83D\uDC0A","green"),
+           Map.entry("\uD83E\uDE99","yellow"),
+           Map.entry("\uD83E\uDDB7","white"),
+           Map.entry("\uD83D\uDC80","gray"),
+           Map.entry("\uD83D\uDCBC","brown"),
+           Map.entry("\uD83D\uDD25","orange"),
+           Map.entry("\uD83E\uDD48","silver"),
+           Map.entry("\uD83E\uDD47","gold"),
+           Map.entry("\uD83D\uDE08","violet"),
+           Map.entry("\uD83E\uDED2","olive"),
+           Map.entry("\uD83C\uDF51","peach"),
+           Map.entry("\uD83E\uDE78","crimson"),
+           Map.entry("\uD83E\uDDA7","beige"),
+           Map.entry("\uD83E\uDED0","navy")
+   );
+
    public static Map<String,String> emojiNameColors = Map.ofEntries(
            Map.entry(":hot_face:","red"),
            Map.entry(":blowfish:","salmon"),

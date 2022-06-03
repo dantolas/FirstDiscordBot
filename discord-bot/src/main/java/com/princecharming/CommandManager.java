@@ -1,6 +1,5 @@
 package com.princecharming;
 
-import net.dv8tion.jda.api.events.message.MessageEmbedEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 //region<Imported Commands>
@@ -19,6 +18,7 @@ import Commands.Ping;
 import Commands.Hangman;
 import Commands.Meme;
 import Commands.Colors;
+import Commands.Cope;
 
 
 //endregion
@@ -53,6 +53,7 @@ public class CommandManager {
 
         addSecretCommand(new SniperPiss());
         addSecretCommand(new RickRoll());
+        addSecretCommand(new Cope());
     }
 
     private void addCommand(Command command){

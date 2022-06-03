@@ -28,7 +28,7 @@ public class Hangman implements Command {
         Scanner scanner;
         Map<String,List<String>> map = new HashMap<>();
         try {
-             scanner = new Scanner(new File("main/resources/hangmanWords.csv"));
+             scanner = new Scanner(new File("discord-bot/src/main/resources/hangmanWords.csv"));
 
 
             while (scanner.hasNextLine()){

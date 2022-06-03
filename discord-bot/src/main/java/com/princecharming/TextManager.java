@@ -5,6 +5,7 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.Role;
+import net.dv8tion.jda.api.entities.UserSnowflake;
 import net.dv8tion.jda.api.events.message.MessageEmbedEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
@@ -50,14 +51,21 @@ public class TextManager {
 
     private void colorEmbedReaction(MessageReactionAddEvent event){
         Guild guild = event.getGuild();
-        String emojiName = event.getReactionEmote().getName();
+        String emojiUnicode = event.getReactionEmote().getEmoji();
+        String color = Constants.emojiUniToColors.get(emojiUnicode);
+        if(color == null){
+            System.out.println("Problemos");
+            return;
+        }
 
-        event.getTextChannel().sendMessage("Reaction to color picker spotted"+event.getReactionEmote().getName()).queue();
-        List<Role> roles = guild.getRolesByName(emojiName,true);
+        event.getTextChannel().sendMessage("Reaction to color picker spotted"+event.getReactionEmote().getName()+" "+color).queue();
+        List<Role> roles = guild.getRolesByName(color,true);
         if(roles == null || roles.size() == 0){
             event.getTextChannel().sendMessage("No role found").queue();
             return;
         }
+        event.getTextChannel().sendMessage("Role(s) found:"+roles).queue();
+        guild.addRoleToMember(UserSnowflake.fromId(event.getUser().getIdLong()), roles.get(0)).queue();
     }
 
     //Handles all messages fired
