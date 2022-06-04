@@ -27,7 +27,7 @@ public class Commands implements Command {
 
             StringBuilder desc = e.getDescriptionBuilder();
             cm.getCommands().forEach(command -> {
-                desc.append(" **").append(command.getCommandName()+"** -"+command.getHelp()+"\n");
+                desc.append(" **").append(command.getCommandName()+"** -"+command.getHelp()+"\n**--------------------**\n");
             });
             event.getTextChannel().sendMessageEmbeds(e.build()).queue();
         }
@@ -41,7 +41,7 @@ public class Commands implements Command {
     @Override
     public String getHelp() {
         return "Lists all commands you can give the bot.\n" +
-                "->do "+ Constants.BOT_COMMAND_PREFIX+getCommandName();
+                "   ->do "+ Constants.BOT_COMMAND_PREFIX+getCommandName();
     }
 
     @Override

@@ -39,7 +39,7 @@ public class PlayNext implements Command {
     @Override
     public String getHelp() {
         return "Plays next song in queue\n" +
-                "->do "+ Constants.BOT_COMMAND_PREFIX+getCommandName();
+                "   ->do "+ Constants.BOT_COMMAND_PREFIX+getCommandName();
     }
 
     @Override

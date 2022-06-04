@@ -21,7 +21,7 @@ public class Joke implements Command {
     public static String getRandomJoke() throws FileNotFoundException {
         if(jokes ==null){
             jokes = new ArrayList<String>();
-            scanner = new Scanner(new File("discord-bot/src/main/resources/jokes.csv"));
+            scanner = new Scanner(new File("main/resources/jokes.csv"));
             while (scanner.hasNextLine()){
                 jokes.add(scanner.nextLine());
             }
@@ -50,7 +50,7 @@ public class Joke implements Command {
     @Override
     public String getHelp() {
         return "The bot tries his best to make you laugh.\n" +
-                "->do "+ Constants.BOT_COMMAND_PREFIX+getCommandName();
+                "   ->do "+ Constants.BOT_COMMAND_PREFIX+getCommandName();
     }
 
     @Override

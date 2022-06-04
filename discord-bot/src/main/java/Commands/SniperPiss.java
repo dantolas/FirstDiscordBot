@@ -17,7 +17,7 @@ public class SniperPiss implements Command {
 
     @Override
     public String getCommandName() {
-        return "sniperpiss";
+        return "jarate";
     }
 
     @Override

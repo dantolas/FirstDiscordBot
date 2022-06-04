@@ -9,7 +9,7 @@ import java.util.List;
 public class Shutdown implements Command {
     @Override
     public void run(List<String> args, MessageReceivedEvent event) {
-        event.getTextChannel().sendMessage("Farewell, don't allow Shrek in here while I'm gone :v: ").queue();
+        event.getTextChannel().sendMessage("Farewell, don't let that stinky ogre Shrek in here while I'm gone. ").queue();
         event.getJDA().shutdown();
         System.exit(0);
     }
@@ -22,7 +22,7 @@ public class Shutdown implements Command {
     @Override
     public String getHelp() {
         return "This will shutdown the bot. **OWNER PERMISSION REQUIRED**\n" +
-                "->do "+ Constants.BOT_COMMAND_PREFIX+getCommandName()+" <username>";
+                "   ->do "+ Constants.BOT_COMMAND_PREFIX+getCommandName()+" <username>";
     }
 
     @Override

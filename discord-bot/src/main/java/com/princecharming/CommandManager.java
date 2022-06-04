@@ -19,6 +19,7 @@ import Commands.Hangman;
 import Commands.Meme;
 import Commands.Colors;
 import Commands.Cope;
+import Commands.UserInfo;
 
 
 //endregion
@@ -50,6 +51,7 @@ public class CommandManager {
         addCommand(new Hangman(this));
         addCommand(new Meme());
         addCommand(new Colors());
+        addCommand(new UserInfo());
 
         addSecretCommand(new SniperPiss());
         addSecretCommand(new RickRoll());

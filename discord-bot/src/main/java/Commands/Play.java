@@ -66,7 +66,7 @@ public class Play implements com.princecharming.Command {
     @Override
     public String getHelp() {
         return "Plays a song\n" +
-                "->do "+ Constants.BOT_COMMAND_PREFIX+getCommandName()+" <url>";
+                "   ->do "+ Constants.BOT_COMMAND_PREFIX+getCommandName()+" <url>";
     }
 
     @Override

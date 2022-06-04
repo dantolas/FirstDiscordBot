@@ -28,7 +28,7 @@ public class Hangman implements Command {
         Scanner scanner;
         Map<String,List<String>> map = new HashMap<>();
         try {
-             scanner = new Scanner(new File("discord-bot/src/main/resources/hangmanWords.csv"));
+             scanner = new Scanner(new File("main/resources/hangmanWords.csv"));
 
 
             while (scanner.hasNextLine()){
@@ -95,8 +95,8 @@ public class Hangman implements Command {
             categories += "`"+key+"`\n";
         }
         return "The bot will play hangman with you.\n" +
-                "->do "+ Constants.BOT_COMMAND_PREFIX+getCommandName()+" <category>\n"+"Available categories:\n"+ categories+
-                "\n"+"to stop playing just type the command again";
+                "   ->do "+ Constants.BOT_COMMAND_PREFIX+getCommandName()+" <category>\n"+"Available categories:\n"+ categories+
+                "\n"+"  to stop playing just type the command again";
     }
 
     @Override
