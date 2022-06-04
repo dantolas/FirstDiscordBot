@@ -47,7 +47,7 @@ public class PausePlay implements Command {
     @Override
     public String getHelp() {
          return "Pauses/resumes current track if bot is playing one.\n" +
-                "->do "+ Constants.BOT_COMMAND_PREFIX+getCommandName();
+                "   ->do "+ Constants.BOT_COMMAND_PREFIX+getCommandName();
     }
 
     @Override

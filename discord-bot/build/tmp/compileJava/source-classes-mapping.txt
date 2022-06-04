@@ -2,8 +2,8 @@ Commands/Joke.java
  Commands.Joke
 Commands/Hangman.java
  Commands.Hangman
-com/princecharming/CommandManager.java
- com.princecharming.CommandManager
+com/princecharming/Main.java
+ com.princecharming.Main
 com/princecharming/Constants.java
  com.princecharming.Constants
  com.princecharming.Constants$1
@@ -18,10 +18,12 @@ com/princecharming/TextManager.java
 LavaPlayer/PlayerManager.java
  LavaPlayer.PlayerManager
  LavaPlayer.PlayerManager$1
-Commands/Colors.java
- Commands.Colors
+Commands/UserInfo.java
+ Commands.UserInfo
 Commands/Shutdown.java
  Commands.Shutdown
+Commands/Cope.java
+ Commands.Cope
 LavaPlayer/AudioPlayerSendHandler.java
  LavaPlayer.AudioPlayerSendHandler
 com/princecharming/Listener.java
@@ -50,5 +52,7 @@ Commands/PlayNext.java
  Commands.PlayNext
 Commands/HangmanPlayer.java
  Commands.HangmanPlayer
-com/princecharming/Main.java
- com.princecharming.Main
+com/princecharming/CommandManager.java
+ com.princecharming.CommandManager
+Commands/Colors.java
+ Commands.Colors

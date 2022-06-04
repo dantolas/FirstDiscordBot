@@ -5,7 +5,6 @@ import com.princecharming.CommandManager;
 import com.princecharming.Constants;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Parrot implements Command {
@@ -43,7 +42,7 @@ public class Parrot implements Command {
     @Override
     public String getHelp() {
         return "This will parrot a user.\n" +
-                "->do "+ Constants.BOT_COMMAND_PREFIX+getCommandName()+" <discordTag>";
+                "   ->do "+ Constants.BOT_COMMAND_PREFIX+getCommandName()+" <discordTag>";
     }
 
     @Override

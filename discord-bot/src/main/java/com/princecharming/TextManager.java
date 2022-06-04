@@ -1,13 +1,12 @@
 package com.princecharming;
 
 import Commands.HangmanPlayer;
-import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
-import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.Role;
-import net.dv8tion.jda.api.events.message.MessageEmbedEvent;
+import net.dv8tion.jda.api.entities.UserSnowflake;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
+import net.dv8tion.jda.api.exceptions.HierarchyException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,14 +49,41 @@ public class TextManager {
 
     private void colorEmbedReaction(MessageReactionAddEvent event){
         Guild guild = event.getGuild();
-        String emojiName = event.getReactionEmote().getName();
-
-        event.getTextChannel().sendMessage("Reaction to color picker spotted"+event.getReactionEmote().getName()).queue();
-        List<Role> roles = guild.getRolesByName(emojiName,true);
-        if(roles == null || roles.size() == 0){
-            event.getTextChannel().sendMessage("No role found").queue();
+        String emojiUnicode = event.getReactionEmote().getEmoji();
+        String color = Constants.emojiUniToColors.get(emojiUnicode);
+        if(color == null){
+            System.out.println("Problemos");
             return;
         }
+
+        List<Role> roles = guild.getRolesByName(color,true);
+
+        if(roles == null || roles.size() == 0){
+            event.getTextChannel().sendMessage("`No role found`").queue();
+            return;
+        }
+
+        event.getTextChannel().sendMessage("`Assigning role to "+event.getUser().getName()+" -"+color+"`").queue();
+
+        StringBuilder builder = new StringBuilder();
+        roles.forEach(role -> {
+            builder.append("**").append(role.getName()).append("** ");
+        });
+
+        event.getTextChannel().sendMessage("Role(s) found:" + builder+"").queue();
+
+        try {
+            //if the user doesn't have the role, he will get it
+            if(event.getMember().getRoles().contains(roles.get(0))){
+                event.getTextChannel().sendMessage("You already have that role!:skull: ").queue();
+                return;
+            }
+            guild.addRoleToMember(UserSnowflake.fromId(event.getUser().getIdLong()), roles.get(0)).queue();
+            event.getTextChannel().sendMessage("Role assigned :thumbsup:").queue();
+        }catch (HierarchyException e){
+            event.getTextChannel().sendMessage("That role is above me in terms of hierarchy, I cannot give that role to you, sorry :(").queue();
+        }
+
     }
 
     //Handles all messages fired

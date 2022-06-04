@@ -4,7 +4,6 @@ import LavaPlayer.GuildMusicManager;
 import LavaPlayer.PlayerManager;
 import com.princecharming.Command;
 import com.princecharming.Constants;
-import net.dv8tion.jda.api.entities.VoiceChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.managers.AudioManager;
 
@@ -48,7 +47,7 @@ public class VoiceDisconnect implements Command {
     @Override
     public String getHelp() {
         return "Disconnects the bot from a voice channel if he's in one\n" +
-                "->do "+ Constants.BOT_COMMAND_PREFIX+getCommandName();
+                "   ->do "+ Constants.BOT_COMMAND_PREFIX+getCommandName();
     }
 
     @Override

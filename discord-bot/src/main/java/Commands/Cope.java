@@ -5,24 +5,24 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.List;
 
-public class SniperPiss implements Command {
+public class Cope implements Command {
 
 
 
 
     @Override
     public void run(List<String> args, MessageReceivedEvent event) {
-        event.getTextChannel().sendMessage("https://cdn.discordapp.com/attachments/874447411144171610/891693028148932608/piss.mp4").queue();
+        event.getTextChannel().sendMessage("https://tenor.com/view/kongming-gif-25434850").queue();
     }
 
     @Override
     public String getCommandName() {
-        return "jarate";
+        return "cope";
     }
 
     @Override
     public String getHelp() {
-        return "Piss off you wanker";
+        return "";
     }
 
     @Override

@@ -50,7 +50,7 @@ public class Joke implements Command {
     @Override
     public String getHelp() {
         return "The bot tries his best to make you laugh.\n" +
-                "->do "+ Constants.BOT_COMMAND_PREFIX+getCommandName();
+                "   ->do "+ Constants.BOT_COMMAND_PREFIX+getCommandName();
     }
 
     @Override

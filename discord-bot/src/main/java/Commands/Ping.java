@@ -23,7 +23,7 @@ public class Ping implements Command {
     @Override
     public String getHelp() {
         return "Shows the gateway ping of the bot\n" +
-                "->do "+ Constants.BOT_COMMAND_PREFIX+getCommandName();
+                "   ->do "+ Constants.BOT_COMMAND_PREFIX+getCommandName();
     }
 
     @Override
