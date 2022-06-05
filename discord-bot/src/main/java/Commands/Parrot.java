@@ -7,6 +7,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.List;
 
+//Command that puts a user on the "parrot list", meaning the bot will repeat everything the user sends into any text channel except for commands
 public class Parrot implements Command {
 
     public final CommandManager cm;

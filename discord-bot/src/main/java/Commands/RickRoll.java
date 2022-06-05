@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.managers.AudioManager;
 
 import java.util.List;
 
+//Joke command made for a friend
 public class RickRoll implements Command {
 
 

@@ -9,6 +9,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+//Command that sends an embed into a text channel containing information about a user
 public class UserInfo implements Command {
     @Override
     public void run(List<String> args, MessageReceivedEvent event) {

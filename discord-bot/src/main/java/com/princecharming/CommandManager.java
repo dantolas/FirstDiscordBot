@@ -10,7 +10,7 @@ import Commands.Play;
 import Commands.PlayNext;
 import Commands.Parrot;
 import Commands.Shutdown;
-import Commands.SniperPiss;
+import Commands.Jarate;
 import Commands.RickRoll;
 import Commands.PausePlay;
 import Commands.VoiceDisconnect;
@@ -27,6 +27,8 @@ import Commands.UserInfo;
 
 import java.util.*;
 import java.util.regex.Pattern;
+
+//CommandManager along with it's "sub manager" TextManager handle basically all events fired and caught by the Listener class
 
 public class CommandManager {
 
@@ -53,7 +55,7 @@ public class CommandManager {
         addCommand(new Colors());
         addCommand(new UserInfo());
 
-        addSecretCommand(new SniperPiss());
+        addSecretCommand(new Jarate());
         addSecretCommand(new RickRoll());
         addSecretCommand(new Cope());
     }
@@ -89,11 +91,11 @@ public class CommandManager {
     void handle(MessageReceivedEvent event){
 
         final String message = event.getMessage().getContentRaw();
-        System.out.println("Command manager has received a message");
+        System.out.println("Command manager has received a message ~ System time:" + System.currentTimeMillis() / 1000);
 
         if(!message.startsWith(Constants.BOT_COMMAND_PREFIX) && !message.endsWith(Constants.BOT_SECRET_COMMAND_AFTERFIX)){
             tm.handle(event);
-            System.out.println("Command manager has passed it on to tm to handle");
+            System.out.println("Command manager has passed it on to tm to handle ~ System time:" + System.currentTimeMillis() / 1000);
             return;
         }
 

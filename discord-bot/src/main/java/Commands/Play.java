@@ -10,6 +10,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
+//Music player command
+//Command that plays a song from youtube
 public class Play implements com.princecharming.Command {
 
 
@@ -40,6 +42,7 @@ public class Play implements com.princecharming.Command {
             builder.append(word).append(" ");
         });
 
+        //Check if the argument passed in is a link, if not, youtube will be searched with the argument passerd in and the first search result will be played, if yes, it plays the video/song linked
         String link = builder.toString();
         if(!isURL(link)){
             link = "ytsearch:" + link;

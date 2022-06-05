@@ -7,6 +7,8 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.List;
 
+//Music player command
+//Plays the next command in queue
 public class PlayNext implements Command {
 
     public final PlayerManager playerManager;
