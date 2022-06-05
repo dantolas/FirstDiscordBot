@@ -4,30 +4,39 @@ import com.princecharming.Command;
 import com.princecharming.Constants;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+
+//The bot will tell you a (very offensive) joke
 public class Joke implements Command {
 
+    //List for storing all the jokes
     private static ArrayList<String> jokes;
-    private static Scanner scanner;
     private static Random rng = new Random();
 
-
-    public static String getRandomJoke() throws FileNotFoundException {
+    //Gets a random joke from the list
+    //When run for the first time, it needs to fill the jokes list. The path to the jokes.csv file is a hard coded path, and must be slightly changed on different PC's for this command to work
+    public static String getRandomJoke() throws IOException {
         if(jokes ==null){
             jokes = new ArrayList<String>();
-            scanner = new Scanner(new File("main/resources/jokes.csv"));
-            while (scanner.hasNextLine()){
-                jokes.add(scanner.nextLine());
+            BufferedReader reader = null;
+            try {
+                reader = new BufferedReader(new FileReader("main/resources/jokes.csv"));
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            String currentLine;
+            while ((currentLine = reader.readLine()) != null){
+                jokes.add(currentLine);
             }
         }
 
-        return jokes.get(rng.nextInt(jokes.size()));
+        int random = rng.nextInt(jokes.size() / 2 + jokes.size() / 2 );
+        return jokes.get(random);
 
     }
 
@@ -39,6 +48,8 @@ public class Joke implements Command {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             event.getTextChannel().sendMessage("Something went wrong").queue();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

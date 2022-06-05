@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.List;
 
+//Command that gives you the gateway ping of the bot, so you can check if he has even worse connection than you
 public class Ping implements Command {
 
 

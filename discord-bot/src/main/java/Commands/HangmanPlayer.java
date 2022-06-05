@@ -3,6 +3,7 @@ package Commands;
 import java.util.List;
 import java.util.Objects;
 
+//Helper class used for storing data needed to play a hangman game
 public class HangmanPlayer{
 
     private String username;

@@ -11,8 +11,11 @@ import net.dv8tion.jda.api.exceptions.HierarchyException;
 import java.util.ArrayList;
 import java.util.List;
 
+//The "sub manager" for CommandManager, exists basically to not clutter up the CommandManager.handle method too much and leave just the commands to the command manager,
+// while textManager takes care of general reactions to text messages and some other stuff
 public class TextManager {
 
+    //TextManager also handles the hangman game (Commands.Hangman) and parroting users (Commands.Parrot)
     private List<HangmanPlayer> hangmanPlayers = new ArrayList<HangmanPlayer>();
     private List<String> parrotList = new ArrayList<>();
 
@@ -39,7 +42,7 @@ public class TextManager {
         if(event.getUser().isBot()){
             return;
         }
-        System.out.println("Text Manager received a reaction event");
+        System.out.println("Text Manager received a reaction event ~ System time:" + System.currentTimeMillis() / 1000);
 
         if(!Constants.colorEmbedIds.contains(event.getMessageIdLong())){
             return;
@@ -47,6 +50,8 @@ public class TextManager {
         colorEmbedReaction(event);
     }
 
+
+    //This method has to do with the Commands.Colors command, when someone reacts to a specific "Color Picker" embed, this method handles it
     private void colorEmbedReaction(MessageReactionAddEvent event){
         Guild guild = event.getGuild();
         String emojiUnicode = event.getReactionEmote().getEmoji();
@@ -91,7 +96,7 @@ public class TextManager {
         String username = event.getAuthor().getName();
         String message = event.getMessage().getContentRaw();
 
-        System.out.println("Text manager has received a message");
+        System.out.println("Text manager has received a message ~ System time" + System.currentTimeMillis() / 1000);
 
         String[] tagSplit = event.getAuthor().getAsTag().split("#");
         String authorTag = tagSplit[1];

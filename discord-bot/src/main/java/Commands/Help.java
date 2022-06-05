@@ -7,6 +7,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.List;
 
+//Command that will give you the description of any and multiple commands
 public class Help implements Command {
 
     public final CommandManager cm;

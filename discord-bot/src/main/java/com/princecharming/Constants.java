@@ -6,19 +6,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//Class with some constants the rest of the code references, consider this a settings class
+//Class with some constants the rest of the code references, consider this a sort of settings class
 public abstract class Constants {
 
    public static final String BOT_COMMAND_PREFIX = "!";
 
    public static final String BOT_SECRET_COMMAND_AFTERFIX = "?";
 
+   //Bot owner ID
    public static final Long OWNER_ID = 257377227451269122L;
 
    public static final String OWNER_NAME = "Horse";
 
    public static final String BOT_ACTIVITY = " with your dad #]";
 
+
+
+
+
+   //region<Colors command stuff>
    //The stuff below has to do with the Commands.Colors command, because these collections need to be
    //available to more classes in the project
    public static Map<String,String> colorNameToHex = Map.ofEntries(
@@ -45,7 +51,7 @@ public abstract class Constants {
    );
 
 
-   //This list contains the colors that will be put onto the Color Picker 9000 (Commands.Colors)
+   //This list contains the colors that will be put onto the Color Picker 9000 (Commands.Colors.createColorPicker())
    public static List<String> colorMenu = new ArrayList<>();
 
    public static List<String> baseColors = new ArrayList<>(){{
@@ -147,9 +153,9 @@ public abstract class Constants {
            Map.entry("\uD83E\uDDA7","beige"),
            Map.entry("\uD83E\uDED0","navy")
    );
-
+   //Same case as colorEmojis
    public static Map<String,String> emojiUniToColors = new HashMap<>(emojiUniToColorsImm);
 
    public static List<Long> colorEmbedIds = new ArrayList<>();
-
+   //endregion
 }

@@ -9,9 +9,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+
+//Command that let's you play hangman with the bot
 public class Hangman implements Command {
 
     public CommandManager cm;
+    //Map of the available categories and their words
     private Map<String,List<String>> words = new HashMap<>();
 
 
@@ -24,6 +27,8 @@ public class Hangman implements Command {
         this.cm = cm;
     }
 
+    //When the command is run for the first time, the words for the game have to be put into the words map declared above
+    //The path to the words is coded as a hard path, so on different PCs it has to be slightly changed for this command to work
     public Map<String,List<String>> fillmap(){
         Scanner scanner;
         Map<String,List<String>> map = new HashMap<>();

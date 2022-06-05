@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.List;
 
+//Command that terminates the entire program
 public class Shutdown implements Command {
     @Override
     public void run(List<String> args, MessageReceivedEvent event) {

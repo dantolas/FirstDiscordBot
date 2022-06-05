@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.List;
 
+//Command that sends an embed with all the commands the bot can do
 public class Commands implements Command {
 
     public final CommandManager cm;

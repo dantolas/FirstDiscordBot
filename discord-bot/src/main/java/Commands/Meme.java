@@ -16,10 +16,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+//Command that sends a meme from a selection of few subreddits
 public class Meme implements Command {
 
     private Map<String,String> currentMeme;
 
+
+    //It gets the memes from a https request that returns a JSON string containing everything you need to send a meme,including the meme itself
     @Override
     public void run(List<String> args, MessageReceivedEvent event){
 
@@ -38,7 +41,7 @@ public class Meme implements Command {
                      .setDescription("posted by *"+getMemeAuthor()+"*\n on subreddit *"+getSubrredit()+"*"+" with *"+getUpvotes()+"* :arrow_up: ")
                      .setImage(getMemeUrl())
                      .setColor(Color.orange)
-                     .setFooter(":link: "+getPostLink());
+                     .setFooter("[link]("+getPostLink()+")");
 
 
              event.getChannel().sendMessageEmbeds(builder.build()).queue();

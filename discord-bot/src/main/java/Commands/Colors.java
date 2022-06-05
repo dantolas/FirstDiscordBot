@@ -10,6 +10,8 @@ import java.awt.*;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+
+
 public class Colors implements Command {
 
     @Override
@@ -32,7 +34,7 @@ public class Colors implements Command {
 
 
     }
-
+    //Creates the Color Picker embed, that users can react to and change their color role
     public void createColorPicker(MessageReceivedEvent event){
         StringBuilder sBuilder = new StringBuilder();
 
@@ -181,7 +183,7 @@ public class Colors implements Command {
 
 
     }
-    //endRegion
+    //endregion
 
     //region<Create base>
     public void createBaseColors(List<String> args, MessageReceivedEvent event){
@@ -214,6 +216,7 @@ public class Colors implements Command {
                 event.getGuild().createRole().setName(entry.getKey())
                         .setColor(Color.decode(Constants.colorNameToHex.get(entry.getKey()))).setMentionable(false).queue();
             });
+            event.getTextChannel().sendMessage("All base colors created :thumbsup:").queue();
         }catch (Exception e){
             event.getTextChannel().sendMessage("Something went wrong").queue();
         }
@@ -250,6 +253,7 @@ public class Colors implements Command {
                     role.delete().queue();
                 });
             });
+            event.getTextChannel().sendMessage("All base colors removed :thumbsup:").queue();
         }catch (Exception e){
             event.getTextChannel().sendMessage("Something went wrong").queue();
         }

@@ -9,6 +9,8 @@ import net.dv8tion.jda.api.managers.AudioManager;
 
 import java.util.List;
 
+//Music player command
+//Disconnects the bot from a voice channel and pauses the song he is playing if he is playing one
 public class VoiceDisconnect implements Command {
 
     public final PlayerManager playerManager;

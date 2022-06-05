@@ -8,6 +8,8 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.List;
 
+//Music player command
+//Command to pause or resume the current song playing
 public class PausePlay implements Command {
 
     public final PlayerManager playerManager;
