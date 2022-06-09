@@ -8,27 +8,25 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
 
 //The bot will tell you a (very offensive) joke
 public class Joke implements Command {
 
     //List for storing all the jokes
+
+    InputStream jokesFile = this.getClass().getClassLoader().getResourceAsStream("jokes.csv");
+
     private static ArrayList<String> jokes;
     private static Random rng = new Random();
 
     //Gets a random joke from the list
     //When run for the first time, it needs to fill the jokes list. The path to the jokes.csv file is a hard coded path, and must be slightly changed on different PC's for this command to work
-    public static String getRandomJoke() throws IOException {
+    public String getRandomJoke() throws IOException {
         if(jokes ==null){
             jokes = new ArrayList<String>();
             BufferedReader reader = null;
-            try {
-                reader = new BufferedReader(new FileReader("main/resources/jokes.csv"));
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
-            }
+            reader = new BufferedReader(new InputStreamReader(jokesFile));
             String currentLine;
             while ((currentLine = reader.readLine()) != null){
                 jokes.add(currentLine);

@@ -16,6 +16,7 @@ public class Listener extends ListenerAdapter {
     //Prints to console when bot is ready and on how many guilds he is available
     @Override
     public void onReady(@NotNull ReadyEvent event) {
+        System.out.println("_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_");
         System.out.println(event.getJDA().getSelfUser().getName()+" is online");
         System.out.println("Available on `"+event.getGuildAvailableCount()+"` guilds out of `"+event.getGuildTotalCount()+"`");
     }

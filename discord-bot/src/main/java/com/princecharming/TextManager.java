@@ -120,14 +120,14 @@ public class TextManager {
             boolean hit = hangmanContainsLetter(player,letter);
             if(hit){
                 if(player.getWordBeingGuessed().equals(player.getLastGuess())){
-                    event.getTextChannel().sendMessage("`You have won!`\n"+"The word was:"+player.getWordBeingGuessed()).queue();
+                    event.getTextChannel().sendMessage("`You have won!`\n"+"The word was: **"+player.getWordBeingGuessed()+"**").queue();
                     hangmanPlayers.remove(HangmanPlayer.getByName(this.hangmanPlayers,username));
                 }else{
                  event.getTextChannel().sendMessage(player.getLastGuess()).queue();
                 }
             }else if(!hit){
                 if(player.getMistakes() == player.hangmanStates.length-1){
-                    event.getTextChannel().sendMessage("`You have lost!`\n"+"The word was:"+player.getWordBeingGuessed()+"\n"+player.hangmanStates[player.getMistakes()]).queue();
+                    event.getTextChannel().sendMessage("`You have lost!`\n"+"The word was **:"+player.getWordBeingGuessed()+"**"+"\n"+player.hangmanStates[player.getMistakes()]).queue();
                     hangmanPlayers.remove(HangmanPlayer.getByName(this.hangmanPlayers,username));
                 }else{
                     event.getTextChannel().sendMessage(player.hangmanStates[player.getMistakes()]+"\n"+player.getLastGuess()).queue();

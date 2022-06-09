@@ -167,7 +167,7 @@ public class Colors implements Command {
         //Remove it from
         if(Constants.colorMenu.contains(args.get(1))){
             Constants.colorMenu.remove(args.get(1));
-            Constants.emojiUniToColors.remove(args.get(3),args.get(1));
+            Constants.emojiUniToColors.remove(args.get(1),args.get(1));
         }
 
         //Removing the role

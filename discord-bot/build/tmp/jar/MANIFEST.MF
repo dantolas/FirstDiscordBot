@@ -1,3 +1,4 @@
 Manifest-Version: 1.0
 Main-Class: com.princecharming.Main
+Description: This is the working discord bot JAR file
 

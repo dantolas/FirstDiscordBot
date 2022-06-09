@@ -1,25 +1,25 @@
-com/princecharming/TextManager.java
- com.princecharming.TextManager
-Commands/RickRoll.java
- Commands.RickRoll
-Commands/HangmanPlayer.java
- Commands.HangmanPlayer
+Commands/Joke.java
+ Commands.Joke
+Commands/Hangman.java
+ Commands.Hangman
+com/princecharming/CommandManager.java
+ com.princecharming.CommandManager
 com/princecharming/Constants.java
  com.princecharming.Constants
  com.princecharming.Constants$1
-Commands/UserInfo.java
- Commands.UserInfo
+Commands/Meme.java
+ Commands.Meme
 LavaPlayer/TrackScheduler.java
  LavaPlayer.TrackScheduler
-Commands/PausePlay.java
- Commands.PausePlay
-Commands/Play.java
- Commands.Play
+Commands/Commands.java
+ Commands.Commands
+com/princecharming/TextManager.java
+ com.princecharming.TextManager
 LavaPlayer/PlayerManager.java
  LavaPlayer.PlayerManager
  LavaPlayer.PlayerManager$1
-Commands/Joke.java
- Commands.Joke
+Commands/Colors.java
+ Commands.Colors
 Commands/Shutdown.java
  Commands.Shutdown
 Commands/Cope.java
@@ -28,31 +28,31 @@ LavaPlayer/AudioPlayerSendHandler.java
  LavaPlayer.AudioPlayerSendHandler
 Commands/Jarate.java
  Commands.Jarate
-Commands/PlayNext.java
- Commands.PlayNext
+com/princecharming/Listener.java
+ com.princecharming.Listener
 Commands/VoiceDisconnect.java
  Commands.VoiceDisconnect
-Commands/Meme.java
- Commands.Meme
+Commands/Parrot.java
+ Commands.Parrot
 Commands/Ping.java
  Commands.Ping
 com/princecharming/Command.java
  com.princecharming.Command
 LavaPlayer/GuildMusicManager.java
  LavaPlayer.GuildMusicManager
-Commands/Hangman.java
- Commands.Hangman
-com/princecharming/Main.java
- com.princecharming.Main
+Commands/RickRoll.java
+ Commands.RickRoll
+Commands/Play.java
+ Commands.Play
 Commands/Help.java
  Commands.Help
-com/princecharming/Listener.java
- com.princecharming.Listener
-Commands/Commands.java
- Commands.Commands
-Commands/Parrot.java
- Commands.Parrot
-com/princecharming/CommandManager.java
- com.princecharming.CommandManager
-Commands/Colors.java
- Commands.Colors
+Commands/PausePlay.java
+ Commands.PausePlay
+Commands/PlayNext.java
+ Commands.PlayNext
+Commands/HangmanPlayer.java
+ Commands.HangmanPlayer
+Commands/UserInfo.java
+ Commands.UserInfo
+com/princecharming/Main.java
+ com.princecharming.Main

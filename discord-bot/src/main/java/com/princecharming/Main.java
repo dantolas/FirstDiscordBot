@@ -6,14 +6,21 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
 import javax.security.auth.login.LoginException;
+import java.util.Scanner;
 
 
 public class Main{
     public static void main(String[] args) throws LoginException, InterruptedException {
 
 
-        //region<Launching the bot>!!Remember to make the token as an argument when running the bot
-        JDA bot = JDABuilder.createDefault("insert bot token here")
+        System.out.println("Please enter your bot token: ");
+        String token = new Scanner(System.in).next();
+        token = token.replaceAll("\\s+","");
+
+
+
+        //region<Launching the bot>
+        JDA bot = JDABuilder.createDefault(token)
                 .enableCache(CacheFlag.VOICE_STATE)
                 .setActivity(Activity.playing(Constants.BOT_ACTIVITY))
                 .addEventListeners(new Listener())

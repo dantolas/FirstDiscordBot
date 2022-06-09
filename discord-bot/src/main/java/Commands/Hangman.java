@@ -5,8 +5,7 @@ import com.princecharming.CommandManager;
 import com.princecharming.Constants;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.*;
 
 
@@ -21,24 +20,24 @@ public class Hangman implements Command {
 
     public Hangman(CommandManager cm) {
         //words variable is filled with keys and values from /main/resources/hangmanWords.csv
-        if(this.words.isEmpty()){
-            this.words = fillmap();
-        }
+        this.words = fillmap();
         this.cm = cm;
     }
 
-    //When the command is run for the first time, the words for the game have to be put into the words map declared above
-    //The path to the words is coded as a hard path, so on different PCs it has to be slightly changed for this command to work
+
+    //Method tha fills the words Hashmap with keys as categories and values as lists of words
     public Map<String,List<String>> fillmap(){
         Scanner scanner;
         Map<String,List<String>> map = new HashMap<>();
         try {
-             scanner = new Scanner(new File("main/resources/hangmanWords.csv"));
+            InputStream jokesFile = this.getClass().getClassLoader().getResourceAsStream("hangmanWords.csv");
 
+            BufferedReader reader = new BufferedReader(new InputStreamReader(jokesFile));
 
-            while (scanner.hasNextLine()){
-                String categoryLine = scanner.nextLine();
-                String[] categoryLineSplit = categoryLine.split(":");
+            String nextLine = "";
+
+            while ((nextLine = reader.readLine()) != null){
+                String[] categoryLineSplit = nextLine.split(":");
                 String[] words = categoryLineSplit[1].split(";");
                 if(!this.words.containsKey(categoryLineSplit[0])){
                     map.put(categoryLineSplit[0], Arrays.asList(words));
@@ -49,7 +48,7 @@ public class Hangman implements Command {
 
 
 
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

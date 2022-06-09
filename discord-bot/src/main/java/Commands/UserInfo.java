@@ -23,8 +23,8 @@ public class UserInfo implements Command {
              targetMember = event.getGuild().getMemberById(id);
 
             EmbedBuilder builder = new EmbedBuilder()
-                    .setTitle(targetMember.getUser().getName() + "("+targetMember.getNickname()+")")
-                    .setAuthor(targetMember.getUser().getName(),targetMember.getAvatarUrl(),targetMember.getEffectiveAvatarUrl())
+                    .setTitle(targetMember.getUser().getName())
+                    .setAuthor(targetMember.getUser().getName(),targetMember.getUser().getAvatarUrl(),targetMember.getUser().getEffectiveAvatarUrl())
                     .setDescription("**MENTION** :"+targetMember.getAsMention() + "\n**Tag** :"+targetMember.getUser().getAsTag() + "\n**ID** :"+targetMember.getUser().getId() + "\n**Avatar Link** : [link]("+targetMember.getUser().getEffectiveAvatarUrl()+")")
                     .addField("Server join time",targetMember.getTimeJoined().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),true)
                     .addField("Account creation date",targetMember.getTimeCreated().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),true);
